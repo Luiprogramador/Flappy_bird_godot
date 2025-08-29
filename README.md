@@ -29,7 +29,7 @@ O projeto recria a jogabilidade simples e viciante do jogo original. Você contr
 
 ### Estrutura do Projeto
 
-* `/cenas`: Contém as cenas principais, como a cena do jogo (`game.tscn`), a cena do pássaro (`bird.tscn`) e a cena do cano (`pipe.tscn`).
+* `/cenas`: Contém as cenas principais, como a cena do jogo (`mainView.tscn`), a cena do pássaro (`bird.tscn`) e a cena do cano (`pipe.tscn`).
 * `/scripts`: Contém os scripts GDScript para a lógica do jogo.
 * `/assets`: Contém todos os recursos visuais e sonoros (sprites, áudios, etc.).
 
