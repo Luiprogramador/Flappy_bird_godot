@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -400.0
 
 signal did_died
 
@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 		death_action()
 	# Add the gravity.
 	if did_start_game:
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * 0.7
 	move_and_slide()
 	rotate_bird()
 	# Handle jump.		

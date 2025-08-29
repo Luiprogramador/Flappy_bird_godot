@@ -8,9 +8,11 @@ extends Node2D
 @onready var restart: Button = $UILayer/Restart
 @onready var timer: Timer = $Timer
 
+var spawn_time: float = 2.0  # tempo inicial de geração
 var did_start_game: bool = false
 var score: int = 0
 var pipe = preload("res://cenas/pipes.tscn")
+var pipe_speed: float = 90.0
 
 func _on_touch_area_did_touch() -> void:
 	if did_start_game == false:
@@ -36,12 +38,15 @@ func pipes_generator():
 		var new_pipe = pipe.instantiate()
 		new_pipe.position = Vector2(320, randf_range(95, 305))
 		new_pipe.connect("score_up", did_score)
+		new_pipe.SPEED = pipe_speed
 		call_deferred("add_child", new_pipe)
 		new_pipe.z_index = -1
-		timer.start(2.0)
+		timer.start(spawn_time)
 		
 func did_score():
 	score += 1 
+	pipe_speed += 7.0
+	spawn_time -= 0.1   # aumenta 0.1s a cada ponto
 	score_label.text = str(score)
 
 
