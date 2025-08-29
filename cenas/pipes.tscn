@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dihq2g8nu1yp6"]
+
+[ext_resource type="Texture2D" uid="uid://brxbq1avftmj2" path="res://assets/pipe-green.png" id="1_u41w2"]
+[ext_resource type="Script" uid="uid://c6xuwbn664t2l" path="res://scripts/pipes.gd" id="1_wcnhp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u41w2"]
+size = Vector2(11.5, 176)
+
+[node name="Pipes" type="Area2D"]
+script = ExtResource("1_wcnhp")
+
+[node name="upper" type="StaticBody2D" parent="."]
+light_mask = 2
+position = Vector2(0, -328)
+rotation = 3.14159
+
+[node name="Sprite2D" type="Sprite2D" parent="upper"]
+texture = ExtResource("1_u41w2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upper"]
+polygon = PackedVector2Array(26, -236, 26, -216, 24, -216, 24, 240, -24, 240, -24, -216, -26, -216, -26, -236, -2.06318e-05, -236)
+
+[node name="bottom" type="StaticBody2D" parent="."]
+light_mask = 2
+position = Vector2(0, 328)
+
+[node name="Sprite2D" type="Sprite2D" parent="bottom"]
+texture = ExtResource("1_u41w2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bottom"]
+polygon = PackedVector2Array(-26, -238, -26, -216, -24, -216, -24, 240, 24, 240, 24, -216, 26, -216, 26, -238)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20.75, 0)
+shape = SubResource("RectangleShape2D_u41w2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

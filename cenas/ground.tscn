@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://comxqrta7akl0"]
+
+[ext_resource type="Texture2D" uid="uid://8qe64caix5gm" path="res://assets/base.png" id="1_2l6e2"]
+[ext_resource type="Shader" uid="uid://dmcd7vhw1xidg" path="res://scripts/ground.gdshader" id="1_6vr7o"]
+[ext_resource type="Script" uid="uid://by0ypjp4uf4bs" path="res://scripts/ground.gd" id="1_lkpte"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lkpte"]
+shader = ExtResource("1_6vr7o")
+shader_parameter/speed = 0.3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vr7o"]
+size = Vector2(336, 111)
+
+[node name="Ground" type="StaticBody2D"]
+script = ExtResource("1_lkpte")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_lkpte")
+texture = ExtResource("1_2l6e2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_6vr7o")

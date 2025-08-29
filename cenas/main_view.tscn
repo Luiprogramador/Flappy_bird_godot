@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdi61ck8bgisw"]
+
+[ext_resource type="Script" uid="uid://c2y2efymp1qm2" path="res://scripts/main_view.gd" id="1_4vs5i"]
+[ext_resource type="Texture2D" uid="uid://bcqoq3i000ory" path="res://assets/background-day.png" id="1_7oa3q"]
+[ext_resource type="Texture2D" uid="uid://by3ig6jb68jl7" path="res://assets/gameover.png" id="2_wfwim"]
+[ext_resource type="Texture2D" uid="uid://cwxb8lj30su0p" path="res://assets/taptap.png" id="3_pbnn0"]
+[ext_resource type="FontFile" uid="uid://wbe44vobrc33" path="res://assets/Kenney Blocks.ttf" id="4_heglt"]
+[ext_resource type="Script" uid="uid://dswfo1stbeixq" path="res://scripts/touch_area.gd" id="5_pbnn0"]
+[ext_resource type="Script" uid="uid://hbv2t23of4ch" path="res://cenas/reset_area.gd" id="7_401j8"]
+[ext_resource type="PackedScene" uid="uid://dqb2hrrxrk06b" path="res://cenas/character_body_2d.tscn" id="7_gs57n"]
+[ext_resource type="PackedScene" uid="uid://comxqrta7akl0" path="res://cenas/ground.tscn" id="8_401j8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_udbiv"]
+font = ExtResource("4_heglt")
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfwim"]
+size = Vector2(310, 527)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbnn0"]
+size = Vector2(20, 594.5)
+
+[node name="MainView" type="Node2D"]
+script = ExtResource("1_4vs5i")
+
+[node name="fundoLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="fundoLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_7oa3q")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="GameOver" type="TextureRect" parent="UILayer"]
+visible = false
+offset_left = 46.0
+offset_top = 101.0
+offset_right = 238.0
+offset_bottom = 143.0
+texture = ExtResource("2_wfwim")
+
+[node name="Tutorial" type="TextureRect" parent="UILayer"]
+offset_left = 55.0
+offset_top = 131.0
+offset_right = 239.0
+offset_bottom = 240.0
+texture = ExtResource("3_pbnn0")
+
+[node name="ScoreLabel" type="Label" parent="UILayer"]
+offset_left = 135.0
+offset_top = 47.0
+offset_right = 175.0
+offset_bottom = 86.0
+text = "0"
+label_settings = SubResource("LabelSettings_udbiv")
+
+[node name="Restart" type="Button" parent="UILayer"]
+visible = false
+offset_left = 87.0
+offset_top = 391.0
+offset_right = 201.0
+offset_bottom = 422.0
+text = "Restart Game
+"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="TouchArea" type="Area2D" parent="."]
+script = ExtResource("5_pbnn0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea"]
+position = Vector2(145, 253.5)
+shape = SubResource("RectangleShape2D_wfwim")
+
+[node name="ResetArea" type="Area2D" parent="."]
+script = ExtResource("7_401j8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ResetArea"]
+position = Vector2(-145, 242)
+shape = SubResource("RectangleShape2D_pbnn0")
+
+[node name="Bird" parent="." instance=ExtResource("7_gs57n")]
+position = Vector2(91, 273)
+
+[node name="Ground" parent="." instance=ExtResource("8_401j8")]
+position = Vector2(139, 471)
+
+[connection signal="pressed" from="UILayer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="did_touch" from="TouchArea" to="." method="_on_touch_area_did_touch"]
+[connection signal="input_event" from="TouchArea" to="TouchArea" method="_on_input_event"]
+[connection signal="area_entered" from="ResetArea" to="." method="_on_reset_area_area_entered"]
+[connection signal="area_entered" from="ResetArea" to="ResetArea" method="_on_area_entered"]
+[connection signal="did_died" from="Bird" to="." method="_on_bird_did_died"]

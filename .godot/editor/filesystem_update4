@@ -1,0 +1,12 @@
+res://cenas/main_view.tscn
+res://cenas/character_body_2d.tscn
+res://cenas/pipes.tscn
+res://cenas/ground.tscn
+res://scripts/ground.gdshader
+res://scripts/touch_area.gd
+res://scripts/main_view.gd
+res://scripts/character_body_2d.gd
+res://scripts/game_manager.gd
+res://scripts/pipes.gd
+res://scripts/ground.gd
+res://cenas/reset_area.gd
