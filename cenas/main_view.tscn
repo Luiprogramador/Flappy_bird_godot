@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cwxb8lj30su0p" path="res://assets/taptap.png" id="3_pbnn0"]
 [ext_resource type="FontFile" uid="uid://wbe44vobrc33" path="res://assets/Kenney Blocks.ttf" id="4_heglt"]
 [ext_resource type="Script" uid="uid://dswfo1stbeixq" path="res://scripts/touch_area.gd" id="5_pbnn0"]
-[ext_resource type="Script" uid="uid://hbv2t23of4ch" path="res://cenas/reset_area.gd" id="7_401j8"]
+[ext_resource type="Script" uid="uid://hbv2t23of4ch" path="res://scripts/reset_area.gd" id="7_401j8"]
 [ext_resource type="PackedScene" uid="uid://dqb2hrrxrk06b" path="res://cenas/character_body_2d.tscn" id="7_gs57n"]
 [ext_resource type="PackedScene" uid="uid://comxqrta7akl0" path="res://cenas/ground.tscn" id="8_401j8"]
 
